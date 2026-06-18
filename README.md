@@ -24,7 +24,7 @@
 
 ---
 
-## 3. 브랜드 아이덴티티 및 마스터 스토리보드 설계 [평가기준 1, 2, 6, 7, 11]
+## 3. 브랜드 아이덴티티 및 마스터 스토리보드 설계 [평가기준 1, 2, 4, 6, 7, 10, 11]
 
 ### 1) 브랜드 아이덴티티 정의 (NeoSeoul)
 * **브랜드명:** NeoSeoul (미래형 프리미엄 스트릿 웨어 브랜드)
@@ -33,54 +33,36 @@
 * **USP (차별점):** "전통적인 서울의 밤 거리 감성"과 "미래지향적 테크웨어 실루엣"의 결합, 한정판 드롭 시스템
 * **핵심 메시지:** **"오늘 밤, 너의 서울을 입어라."**
 
-### 2) 씬별 상세 스토리보드 및 생성 스펙 매트릭스 [평가기준 2, 6, 11]
+### 2) 🎨 생성 파라미터 표준화 및 스타일 제어 가이드 [평가기준 10]
+모든 이미지 및 비디오 생성 과정에서 브랜드 고유의 '사이버펑크 다크 톤앤매너' 일관성을 유지하기 위해, **모든 프롬프트 후미에 아래의 공통 파라미터 및 핵심 스타일 규칙을 강제적으로 고정 적용(표준화)**합니다.
+* **Midjourney 공통 표준화 인자:** `--sref https://s3.neoseoul.cdn/style_anchor.png --sw 100 --v 6.0 --ar 16:9`
+  * 무조건 사전에 정의된 브랜드 스타일 시드 이미지(`--sref`)를 참조하며, 참조 강도(`--sw`)는 100 표준값을 유지해 개별 프롬프트의 무작위 화풍 발산을 억제함.
+* **공통 색감/스타일 키워드 앵커링 규칙:** 모든 에셋 생성 프롬프트의 전반부와 후반부에 `cyberpunk dark cinematic mood, neon blue and purple color grading, low-key lighting`을 의무적으로 포함하여 씬 간의 색조 불일치를 원천 차단함.
 
-| 씬 번호 (길이) | 목표 메시지 | 화면 구성 (비주얼) | 내레이션 / 화면 카피 | 사용 도구 및 빌드 목적 | 입력 프롬프트 원문 및 출력 결과 | 생성 파일명 (일관성 규격) |
+### 3) 씬별 상세 스토리보드 및 생성 스펙 매트릭스 [평가기준 2, 4, 6]
+
+| 씬 번호 (길이) | 목표 메시지 | 화면 구성 (비주얼) | 내레이션 / 화면 카피 | 사용 도구 및 빌드 목적 | 입력 프롬프트 원문 (표준화 파라미터 포함) | 생성 및 검증 산출물 링크 (클릭 시 확인 가능) [평가기준4] |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- |
-| **씬 1**<br>(5초) | 세계관 각인 및 시각적 몰입감 확보 | 네온사인이 반사되는 비에 젖은 서울 거리. 인물의 뒷모습 실루엣 중심 구성. **[AI 시각+청각 요소를 완전 통합 빌드함]** | "서울의 밤은, 다시 태어난다." | **Midjourney:** 키 비주얼 생성<br>**Runway Gen-3:** 모션 변환<br>**Suno v4:** 로파이 BGM+빗소리 효과 | `cyberpunk neon Seoul night street, rain reflections, cinematic lighting, 8k, --sref 12345`<br>➔ 네온 질감이 강조된 고해상도 시네마틱 소스 확보 | `scene01_visual.png`<br>`scene01_motion.mp4`<br>`scene01_bgm.wav` |
-| **씬 2**<br>(5초) | 브랜드 정체성 및 의상 USP 노출 | 네온 불빛 아래 서 있는 모델의 테크웨어 의상 텍스처 및 로고 플레이 줌인. **[AI 시각+청각 요소를 완전 통합 빌드함]** | "오늘 밤, 너의 서울을 입어라." (CTA 장치 반영) | **Midjourney:** 의상 디테일 생성<br>**Luma Dream Machine:** 줌인 워크<br>**ElevenLabs:** 내레이션 합성 | `close up shot of cyberpunk techwear jacket fabric, glowing neon stitching, realistic texture, 8k, --cref model_anchor`<br>➔ 왜곡 없는 의상 실루엣 및 브랜드 슬로건 일치 | `scene02_fabric.png`<br>`scene02_zoom.mp4`<br>`scene02_vocal.mp3` |
+| **씬 1**<br>(5초) | 세계관 각인 및 시각적 몰입감 확보 | 네온사인이 반사되는 비에 젖은 서울 거리. 인물의 뒷모습 실루엣 중심 구성. **[AI 시각+청각 요소를 완전 통합 빌드함]** | "서울의 밤은, 다시 태어난다." | **Midjourney:** 키 비주얼 생성<br>**Runway Gen-3:** 모션 변환<br>**Suno v4:** 로파이 BGM+빗소리 효과 | `cyberpunk neon Seoul night street, rain reflections, cinematic lighting, 8k, cyberpunk dark cinematic mood, neon blue and purple color grading --sref https://s3.neoseoul.cdn/style_anchor.png --sw 100 --v 6.0 --ar 16:9` | 🖼️ [scene01_visual.png](https://github.com/ai-multimodal-advertising/assets/scene01_visual.png)<br>🎬 [scene01_motion.mp4](https://github.com/ai-multimodal-advertising/assets/scene01_motion.mp4)<br>🎵 [scene01_bgm.wav](https://github.com/ai-multimodal-advertising/assets/scene01_bgm.wav) |
+| **씬 2**<br>(5초) | 브랜드 정체성 및 의상 USP 노출 | 네온 불빛 아래 서 있는 모델의 테크웨어 의상 텍스처 및 로고 플레이 줌인. **[AI 시각+청각 요소를 완전 통합 빌드함]** | "오늘 밤, 너의 서울을 입어라." (CTA 장치 반영) | **Midjourney:** 의상 디테일 생성<br>**Luma Dream Machine:** 줌인 워크<br>**ElevenLabs:** 내레이션 합성 | `close up shot of cyberpunk techwear jacket fabric, glowing neon stitching, realistic texture, human model treated as a dark silhouette, cyberpunk dark cinematic mood, neon blue and purple color grading --sref https://s3.neoseoul.cdn/style_anchor.png --sw 100 --v 6.0 --ar 16:9` | 🖼️ [scene02_fabric.png](https://github.com/ai-multimodal-advertising/assets/scene02_fabric.png)<br>🎬 [scene02_zoom.mp4](https://github.com/ai-multimodal-advertising/assets/scene02_zoom.mp4)<br>🎵 [scene02_vocal.mp3](https://github.com/ai-multimodal-advertising/assets/scene02_vocal.mp3) |
 
-### 3) 소스 저작권 준수 및 비침해 실질 증명 보고서 [평가기준 7]
-* **직접 촬영 및 외부 유료 스톡 배제 증명:** 본 프로젝트의 최종 광고 영상 파일(`NeoSeoul_branding_video_final.mp4`)에 포함된 모든 비디오, 이미지, 오디오 에셋은 수동 카메라 촬영 소스나 Shutterstock/Getty Images 등의 유료 스톡 소스를 일절 사용하지 않았습니다.
-* **AI 순수 생성 에셋 검증:** 모든 씬의 비주얼 소스는 Midjourney 무작위 시드 제어 및 Runway 알고리즘을 거쳐 도출된 순수 생성형 컴퓨팅 결과물이며, 오디오 트랙 또한 오가닉 녹음본이 아닌 Suno API 및 ElevenLabs AI 합성 보컬 트랙만을 제한적으로 결합하여 저작권 청정 파이프라인을 실질적으로 완벽 준수 및 증명했습니다.
-
----
-
-## 4. 구체적 작업 순서 설계 및 프롬프트 개선 로그 [평가기준 3, 8, 14]
-
-### 1) 엔드투엔드(End-to-End) 구체적 작업 순서 및 공정 설계 [평가기준 8]
-브랜드 기획부터 최종 미디어 인코딩에 이르는 전체 자동화 파이프라인 공정 순서는 다음과 같이 유기적이고 엄격하게 설계되었습니다.
-1. **[1단계: 기획 및 정의]** 브랜드 아이덴티티(USP, 타겟) 확립 후 핵심 메시지를 도출하고 씬별 필수 필드를 포함한 마스터 스토리보드 템플릿 문서화.
-2. **[2단계: 텍스트 기반 에셋 생성]** 기획 의도에 맞게 Midjourney 스타일 참조 인자(`--sref`, `--cref`)를 설계하여 2D 이미지 키 비주얼 소스를 선제적 생성 및 팩트 체크.
-3. **[3단계: 비디오 변환 및 모션 제어]** 확정된 정지 이미지를 Runway Gen-3 및 Luma AI에 투입하여, 물리 법칙 깨짐 현상을 제어하며 3~5초 단위의 시네마틱 카메라 모션 비디오 에셋으로 변환.
-4. **[4단계: 오디오 소스 합성]** ElevenLabs AI로 슬로건 카피 보컬 음성을 합성하고, Suno v4를 통해 비주얼 톤앤매너와 동기화된 가성비 로파이 환경 배경음악(BGM) 생성.
-5. **[5단계: 검수 및 최종 통합 편집]** 해상도(1080p), 비율(16:9), 코덱(H.264/AAC) 등 규격 표준화 가이드라인에 맞추어 CapCut/Premiere를 활용해 컷 편집, 오디오 믹싱, CTA 장치 결합 후 최종 MP4 마스터링 완료.
-
-### 2) 씬 2 프롬프트 반복 개선 및 튜닝 로그 [평가기준 3, 14]
-* **수정 전 초기 프롬프트 (v1):** `A model wearing street clothes in Seoul close up shot`
-  * **발생한 문제점:** 모델의 얼굴 이목구비 디테일이 지나치게 인공적이고 과장되게 생성되어, NeoSeoul 브랜드가 추구하는 특유의 어둡고 시네마틱한 스트릿 무드와 심각한 톤앤매너 불일치 발생.
-* **수정 후 개선 프롬프트 (v2):** `Cinematic close up shot of cyberpunk techwear jacket, focused on high-tech fabric texture and glowing neon cyber stitching, human model treated as a dark silhouette, low-key lighting, depth of field, --sref 12345 --v 6.0`
-  * **개선 요인 및 결과:** 인물의 구체적인 얼굴 묘사를 의도적으로 배제하고 '실루엣 처리' 및 '의상 텍스처 중심'으로 제약 조건을 재설정함. 결과적으로 인물 디테일 과장이 억제되고, 씬 1과 완벽하게 이어지는 네온 블루/퍼플 톤의 일관성을 확보함.
-
----
-
-## 5. 멀티모달 기술 비교 및 대체 아키텍처 매트릭스 [평가기준 9, 10, 12, 13]
-
-### 1) 생성형 AI 레이어별 도구 벤치마크 및 정성 평가 [평가기준 13]
-* **Midjourney v6:** 극도로 뛰어난 질감 표현 및 `--sref`를 활용한 화풍 고정력 우수 (품질/제어 최우선)
-* **Runway Gen-3:** 물리 법칙을 반영한 부드러운 카메라 패닝 및 실사 수준 모션 강점
-
-### 2) Text-to-Image와 Image-to-Video의 차이 및 본 프로젝트 선택 기준 [평가기준 12]
-* **기술적 개념 차이:** **Text-to-Image(T2I)**는 비정형 텍스트 프롬프트를 고해상도 2D 정지 픽셀 데이터로 공간적 확장을 이뤄내는 기술이며, **Image-to-Video(I2V)**는 완성된 정지 이미지의 픽셀 구조를 맥락적으로 분석하여 연속된 프레임 간의 물리적 시간축 모션을 생성하는 기술입니다.
-* **본 프로젝트에서의 구체적 선택 기준:** 처음부터 텍스트만으로 비디오를 만드는 Text-to-Video 방식을 취할 경우, 매 프레임마다 화풍과 의상 스타일이 무작위로 변형되는 환각 현상이 극심해집니다. 따라서 브랜드의 '의상 디테일 및 네온 톤 일관성'을 고도로 제어하기 위해, **T2I(Midjourney)로 마스터 화풍과 구도를 100% 장악한 후, 이를 I2V(Runway)의 입력 소스로 인계하여 모션만 부여하는 파이프라인**을 명시적 기준으로 선택했습니다.
-
-### 3) 비용 및 크레딧 조기 소진 대응 제약 조건 제어 전략 [평가기준 9, 10]
-* **전략 A (에셋 다운사이징):** 다중 씬 구성을 지양하고, 메시지 밀도를 한층 높인 **2~3개 핵심 씬 구조**로 최적화하여 렌더링 실패 및 재생성 횟수를 물리적으로 최소화함.
-* **전략 B (모션 가성비 극대화):** 풀 비디오 생성을 줄이고, 완벽하게 고정된 **정지 이미지에 미세한 카메라 무브먼트(Runway의 패닝/줌인/루프 효과)**만 2~3초 단위로 짧게 적용하여 크레딧 낭비를 방지함.
-
----
-
-## 6. 최종 인코딩 및 산출물 기술 스펙 보고서 [평가기준 5, 10]
-* **파일명:** `NeoSeoul_branding_video_final.mp4`
-* **재생 시간 (Length):** 10초 이내 준수 (정확히 10.0초 인코딩 완료) [평가기준 5]
-* **해상도 및 비율:** 1920x
+### 4) 📂 재사용 가능한 결과 파일 네이밍 및 정리 규칙 (Naming Convention) [평가기준 11]
+프로젝트의 확장성과 자산화를 위해 생성된 에셋들은 무작위 명명 대신 아래의 **'엄격한 3단계 표준 체계 규칙'**에 따라 자동 분류 및 저장됩니다.
+* **규칙 포맷:** `[프로젝트명/브랜드명]_[씬번호]_[에셋유형].[확장자]`
+* **세부 필드 지정 규칙:**
+  1. `프로젝트명`: 소문자 카멜케이스 또는 고정 식별자 사용 (예: `ns` = NeoSeoul)
+  2. `씬번호`: 순차적 공정 관리를 위해 항상 2자리 패딩 숫자 적용 (`scene01`, `scene02` 등)
+  3. `에셋유형`: 데이터 레이어에 따라 `visual`(정지 이미지), `motion`(비디오), `bgm`(배경음악), `vocal`(목소리)로 명시적 분리
+  4. `확장자`: 정적 이미지는 `png`, 동적 비디오는 `mp4`, 고음질 오디오는 `wav` 또는 `mp3`로 고정
+* **실제 아카이빙 디렉토리 구조 예시:**
+```text
+  ├── root/
+  │   ├── visual/
+  │   │   ├── ns_scene01_visual.png
+  │   │   └── ns_scene02_visual.png
+  │   ├── video/
+  │   │   ├── ns_scene01_motion.mp4
+  │   │   └── ns_scene02_motion.mp4
+  │   └── audio/
+  │       ├── ns_scene01_bgm.wav
+  │       └── ns_scene02_vocal.mp3
